@@ -1,4 +1,3 @@
-package main
 
 func cek(pf1 []int64, pf2 []int64, p1 []int64, p2 []int64, n int, m int) bool {
 	var mod1, mod2 int64
@@ -38,8 +37,6 @@ func cek(pf1 []int64, pf2 []int64, p1 []int64, p2 []int64, n int, m int) bool {
 		k.h2 = h2
 		mp[k]++
 	}
-
-	var x int
 	for _, c := range mp {
 		if c == 1 {
 			return true
