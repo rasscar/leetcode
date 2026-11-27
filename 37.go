@@ -3,27 +3,29 @@ func solveSudoku(b [][]byte) {
 	var solved bool
 	solved = false
 
-	var place func(d int, r int, c int)
-	place = func(d int, r int, c int) {
+	var place func(d int, rr int, cc int)
+	place = func(d int, rr int, cc int) {
 		var idx int
-		idx = (r/3)*3 + c/3
-		r[r][d]++
-		c[c][d]++
+		idx = (rr/3)*3 + cc/3
+		r[rr][d]++
+		c[cc][d]++
 		bx[idx][d]++
-		b[r][c] = byte(d + '0')
+		b[rr][cc] = byte(d + '0')
 	}
 
-	var remove func(d int, r int, c int)
-	remove = func(d int, r int, c int) {
+	var remove func(d int, rr int, cc int)
+	remove = func(d int, rr int, cc int) {
 		var idx int
-		idx = (r/3)*3 + c/3
-		r[r][d]--
-		c[c][d]--
+		idx = (rr/3)*3 + cc/3
+		r[rr][d]--
+		c[cc][d]--
 		bx[idx][d]--
-		b[r][c] = '.'
+		b[rr][cc] = '.'
 	}
 
+	var backtrack func(row int, col int)
 	var next func(row int, col int)
+
 	next = func(row int, col int) {
 		if row == 8 && col == 8 {
 			solved = true
@@ -34,7 +36,6 @@ func solveSudoku(b [][]byte) {
 		}
 	}
 
-	var backtrack func(row int, col int)
 	backtrack = func(row int, col int) {
 		if b[row][col] == '.' {
 			for d := 1; d <= 9; d++ {
